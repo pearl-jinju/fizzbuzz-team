@@ -1,5 +1,5 @@
 # Indian Poker
-
+#
 import random
 import time
 
@@ -18,7 +18,7 @@ while True:
     while chips!=0:
         round +=1
         print("--------------------------------")
-        print(f"{round}round")
+        print(f"{round} round")
         time.sleep(1)
         if not len(deck)==0:
             # 1. 덱 셔플
@@ -93,13 +93,13 @@ while True:
                 print(f"-----[{cpu}]--------------------[{player}]----")
                 time.sleep(1)
                 if cpu>player:
-                    print(f"It's your defeat. Lost {bet} chips and currently holding chips {chips}.")
+                    print(f"It's your defeat. Lost {bet} chips and currently holding chips {chips}chips")
                 elif cpu==player:
                     chips += bet
-                    print(f"It's a draw. You've got {bet} chips back, and you've got {chips} ")
+                    print(f"It's a draw. You've got {bet} chips back, and you've got {chips}chips ")
                 elif cpu<player:
                     chips += bet*2
-                    print(f"It's your victory. You have won {bet} chips. You currently have chips {chips}. ")
+                    print(f"It's your victory. You have won {bet} chips. You currently have chips {chips}chips ")
 
 
 
@@ -108,5 +108,9 @@ while True:
             deck = [i for i in range(1, 11)] * 2
             print("Replace the deck.")
             time.sleep(1)
+    if bet==0:
+        continue
+    else:
+        print(f"You went bankrupt. Exit the game. You end in {round} Round")
+    break
 
-print(f"You went bankrupt. Exit the game. {round}Round")
