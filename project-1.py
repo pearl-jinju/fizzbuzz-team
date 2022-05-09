@@ -3,11 +3,11 @@
 import random
 import time
 
+
 def suffle(d):
     suffled=random.sample(d,len(d))
     return suffled
-rand= random.randint(1,100)
-random.seed(rand)
+
 deck = [i for i in range(1,11)]*2
 cpu = 0
 player = 0
