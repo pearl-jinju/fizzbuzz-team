@@ -3,10 +3,42 @@
 import random
 import time
 
+def print_round():
+    print("--------------------------------")
+    print(f"{round} round")
+    time.sleep(1)
 
 def suffle(d):
+    print("--------------------------------")
+    print("Shuffle the deck.")
     suffled=random.sample(d,len(d))
+    time.sleep(1)
+    print("--------------------------------")
     return suffled
+
+def distribute_card(deck):
+    cpu = deck.pop()
+    print("The opponent will take the card.")
+    time.sleep(1)
+    print("--------------------------------")
+
+    player = deck.pop()
+    print("The player takes the cards.")
+    time.sleep(1)
+    print("--------------------------------")
+    
+    return cpu, player
+
+def check_card(cpu):
+    time.sleep(1)
+    print("--------------------------------")
+    print(f"Check the opponent's card.")
+    print("--------------------------------")
+    time.sleep(1)
+    print("◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆")
+    print(f"The opponent's card is {cpu}.")
+    print("◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆")
+    time.sleep(1)
 
 deck = [i for i in range(1,11)]*2
 cpu = 0
@@ -17,39 +49,18 @@ round=0
 while True:
     while chips!=0:
         round +=1
-        print("--------------------------------")
-        print(f"{round} round")
-        time.sleep(1)
+        print_round()
+        
         if not len(deck)==0:
             # 1. 덱 셔플
-            print("--------------------------------")
-            print("Shuffle the deck.")
             deck=suffle(deck)
-            time.sleep(1)
-            print("--------------------------------")
-
+            
             # 2. 카드 분배
-            cpu =deck[-1]
-            del deck[-1]
-            print("The opponent will take the card.")
-            time.sleep(1)
-            print("--------------------------------")
-
-            player = deck[-1]
-            del deck[-1]
-            print("The player takes the cards.")
-            time.sleep(1)
-            print("--------------------------------")
+            cpu, player = distribute_card(deck)
+            
             #3. 카드 확인
-            time.sleep(1)
-            print("--------------------------------")
-            print(f"Check the opponent's card.")
-            print("--------------------------------")
-            time.sleep(1)
-            print("◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆")
-            print(f"The opponent's card is {cpu}.")
-            print("◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆")
-            time.sleep(1)
+            check_card(cpu)
+            
             while True:
                 bet = int(input(f"Enter the number of chips to bet on (DIE = 0) [Current chips: {chips}]"))
                 if bet>chips:
